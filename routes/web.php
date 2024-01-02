@@ -24,3 +24,7 @@ Route::get('/login', function () {
 Route::get('/register', function () {
     return view('register.index');
 });
+
+Route::get('/informasi-pendaftaran', function () {
+    return view('informasi-pendaftaran');
+});
