@@ -28,3 +28,7 @@ Route::get('/register', function () {
 Route::get('/informasi-pendaftaran', function () {
     return view('informasi-pendaftaran');
 });
+
+Route::get('/galeri-sekolah', function () {
+    return view('galeri-sekolah');
+});
