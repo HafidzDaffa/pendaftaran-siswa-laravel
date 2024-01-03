@@ -37,7 +37,10 @@ Route::get('/lihat-informasi-siswa', function () {
     return view('lihat-informasi-siswa');
 });
 
+Route::get('/informasi-siswa', function () {
+    return view('informasi-siswa');
+});
+
 Route::get('/galeri-sekolah', function () {
     return view('galeri-sekolah');
 });
-
