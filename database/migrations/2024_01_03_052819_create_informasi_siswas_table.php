@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('no_hp')->nullable();
             $table->string('pekerjaan_ortu')->nullable();
             $table->integer('penghasilan_ortu')->nullable();
-            $table->enum('kepemilikan_rumah', ['mengontrak', 'milik_pribadi'])->nullable();
+            $table->string('kepemilikan_rumah')->nullable();
             $table->string('pas_foto')->nullable();
             $table->string('akta_kelahiran')->nullable();
             $table->string('kartu_keluarga')->nullable();
