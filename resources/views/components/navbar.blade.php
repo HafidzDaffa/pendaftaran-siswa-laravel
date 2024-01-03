@@ -6,6 +6,6 @@
         <a href="/galeri-sekolah" class="{{ request()->path() == 'galeri-sekolah' ? 'font-bold text-tertiary' : '' }} hover:text-tertiary hover:font-bold transition-all duration-300">Galeri Sekolah</a>
     </div>
     <div>
-        <button class="bg-secondary rounded-lg px-[34px] py-[4px] text-[20px] text-white font-bold hover:bg-sky-700 transition-all duration-300">Daftar</button>
+        <a href="/register" class="bg-secondary rounded-lg px-[34px] py-[8px] text-[18px] text-white font-bold hover:bg-sky-700 transition-all duration-300">Daftar</a>
     </div>
 </div>
