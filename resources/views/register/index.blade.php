@@ -25,7 +25,7 @@ Register
             @error('password') <span class="text-red-500">{{ $message }}</span> @enderror
         </div>
         <div class="mb-8 text-center">
-            <a class="hover:text-secondary transition-all duration-300 font-semibold">Sudah punya akun? Login</a>
+            <a class="hover:text-secondary transition-all duration-300 font-semibold cursor-pointer">Sudah punya akun? Login</a>
         </div>
         <button type="submit" class="w-full bg-secondary hover:bg-sky-700 text-white p-3 rounded-lg">Daftar</button>
     </form>
