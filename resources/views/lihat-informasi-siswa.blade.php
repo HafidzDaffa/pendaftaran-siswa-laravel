@@ -10,8 +10,11 @@
 <body class="w-full h-screen bg-background flex flex-col">
     @include("components.navbar-two")
     <div class="w-full flex flex-col py-[40px] px-[55px] gap-y-[80px] text-[24px]">
-        <div class="bg-primary py-[33px] px-[39px]">
+        <div class="bg-primary py-[33px] px-[39px] flex justify-between">
             <h1 class="font-bold">Pendaftaran Murid Baru</h1>
+            @if(!empty($informasi_siswa))
+                <a href="/informasi-siswa/edit" class="bg-green-500 rounded-lg px-[34px] py-[8px] text-[18px] text-white font-bold hover:bg-green-700 transition-all duration-300">Edit</a>
+            @endif
         </div>
         <div class="px-[48px] py-[66px] flex flex-col gap-y-[108px] items-center">
             {{-- <div class="border border-black border-1 rounded-lg w-[270px] h-[359px] flex items-center justify-center">

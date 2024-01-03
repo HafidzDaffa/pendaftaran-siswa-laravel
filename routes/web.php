@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\InformasiSiswaController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,10 +40,6 @@ Route::get('/galeri-sekolah', function () {
     return view('galeri-sekolah');
 });
 
-Route::get('/pendaftar-baru', function () {
-    return view('pendaftar-baru');
-});
-
 Route::group(['middleware' => ['role:wali_murid']], function() {
     Route::get('/lihat-informasi-siswa', [InformasiSiswaController::class, 'index'])->name('lihat-informasi-siswa');
 
@@ -50,11 +47,15 @@ Route::group(['middleware' => ['role:wali_murid']], function() {
         return view('informasi-siswa.create');
     });
 
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+
     Route::post('/informasi-siswa/store', [InformasiSiswaController::class, 'store'])->name('informasi-siswa.store');
 
     Route::get('/informasi-siswa/edit', [InformasiSiswaController::class, 'edit'])->name('informasi-siswa.edit');
 
     Route::patch('/informasi-siswa/update', [InformasiSiswaController::class, 'update'])->name('informasi-siswa.update');
+
+    Route::post('/logout',[AuthController::class, 'logout'])->name('logout.logout');
 });
 
 

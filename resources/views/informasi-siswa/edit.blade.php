@@ -104,23 +104,31 @@
                     <h3>:</h3>
                 </div>
                 <div class="flex flex-col gap-y-[32px] col-span-3">
-                    <input type="file" id="pas_foto" name="pas_foto" class="form-input rounded-lg p-2 border border-black w-full">
-                    <p id="file-pas-foto">{{ $informasi_siswa->pas_foto }}</p>
+                    <div class="flex flex-row items-center gap-4">
+                        <input type="file" id="pas_foto" name="pas_foto" class="form-input rounded-lg p-2 border border-black w-full">
+                        <p id="file-pas-foto">{{ $informasi_siswa->pas_foto }}</p>
+                    </div>
                     @error('pas_foto')
                         <span class="text-red-500">{{ $message }}</span>
                     @enderror
-                    <input type="file" id="akta_kelahiran" name="akta_kelahiran" class="form-input rounded-lg p-2 border border-black w-full">
-                    <p id="file-akta-kelahiran">{{ $informasi_siswa->akta_kelahiran }}</p>
+                    <div class="flex flex-row items-center gap-4">
+                        <input type="file" id="akta_kelahiran" name="akta_kelahiran" class="form-input rounded-lg p-2 border border-black w-full">
+                        <p id="file-akta-kelahiran">{{ $informasi_siswa->akta_kelahiran }}</p>
+                    </div>
                     @error('akta_kelahiran')
                         <span class="text-red-500">{{ $message }}</span>
                     @enderror
-                    <input type="file" id="kartu_keluarga" name="kartu_keluarga" class=" form-input rounded-lg p-2 border border-black w-full">
-                    <p id="file-kartu-keluarga">{{ $informasi_siswa->kartu_keluarga }}</p>
+                    <div class="flex flex-row items-center gap-4">
+                        <input type="file" id="kartu_keluarga" name="kartu_keluarga" class=" form-input rounded-lg p-2 border border-black w-full">
+                        <p id="file-kartu-keluarga">{{ $informasi_siswa->kartu_keluarga }}</p>
+                    </div>
                     @error('kartu_keluarga')
                         <span class="text-red-500">{{ $message }}</span>
                     @enderror
-                    <input type="file" id="ktp_ortu" name="ktp_ortu" class=" form-input rounded-lg p-2 border border-black w-full">
-                    <p id="file-ktp-ortu">{{ $informasi_siswa->ktp_ortu }}</p>
+                    <div class="flex flex-row items-center gap-4">
+                        <input type="file" id="ktp_ortu" name="ktp_ortu" class=" form-input rounded-lg p-2 border border-black w-full">
+                        <p id="file-ktp-ortu">{{ $informasi_siswa->ktp_ortu }}</p>
+                    </div>
                     @error('ktp_ortu')
                         <span class="text-red-500">{{ $message }}</span>
                     @enderror
