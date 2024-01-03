@@ -33,6 +33,11 @@ Route::get('/informasi-pendaftaran', function () {
     return view('informasi-pendaftaran');
 });
 
+Route::get('/lihat-informasi-siswa', function () {
+    return view('lihat-informasi-siswa');
+});
+
 Route::get('/galeri-sekolah', function () {
     return view('galeri-sekolah');
 });
+
