@@ -28,3 +28,12 @@ Route::get('/register', function () {
 
 Route::post('/login', [AuthController::class, 'login'])->name('login.store');
 Route::post('/register', [AuthController::class, 'register'])->name('register.store');
+});
+
+Route::get('/informasi-pendaftaran', function () {
+    return view('informasi-pendaftaran');
+});
+
+Route::get('/galeri-sekolah', function () {
+    return view('galeri-sekolah');
+});
