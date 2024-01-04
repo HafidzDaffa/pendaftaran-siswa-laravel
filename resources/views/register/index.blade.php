@@ -10,6 +10,11 @@ Register
     <form action="{{ route('register.store') }}" method="post" class="flex flex-col w-full px-5">
         @csrf
         <div class="mb-8">
+            <label for="nama" class="block text-sm font-medium text-gray-600">Nama:</label>
+            <input type="nama" id="nama" name="nama" value="{{ old('nama') }}" class="form-input rounded-lg p-3 border border-black w-full" required>
+            @error('nama') <span class="text-red-500">{{ $message }}</span> @enderror
+        </div>
+        <div class="mb-8">
             <label for="email" class="block text-sm font-medium text-gray-600">Email:</label>
             <input type="email" id="email" name="email" value="{{ old('email') }}" class="form-input rounded-lg p-3 border border-black w-full" required>
             @error('email') <span class="text-red-500">{{ $message }}</span> @enderror

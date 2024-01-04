@@ -38,6 +38,7 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $this->validate($request, [
+            'nama' => 'required',
             'email' => 'required|email|unique:users,email',
             'no_wa' => 'required',
             'password' => 'required|min:8',
@@ -46,6 +47,7 @@ class AuthController extends Controller
         $input = $request->all();
 
         User::create([
+            'nama' => $input['nama'],
             "email" => $input['email'],
             "password" => Hash::make($input['password']),
             'no_wa' => "0813212321312",
