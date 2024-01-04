@@ -36,6 +36,10 @@ Route::get('/admin/siswa', function () {
     return view('admin.siswa');
 });
 
+Route::get('/kelulusan', function () {
+    return view('kelulusan');
+});
+
 Route::get('/admin/wali-murid', function () {
     return view('admin.wali-murid');
 });
@@ -51,7 +55,7 @@ Route::get('/galeri-sekolah', function () {
     return view('galeri-sekolah');
 });
 
-Route::group(['middleware' => ['role:wali_murid']], function() {
+Route::group(['middleware' => ['role:wali_murid']], function () {
     Route::get('/lihat-informasi-siswa', [InformasiSiswaController::class, 'index'])->name('lihat-informasi-siswa');
 
     Route::get('/informasi-siswa', function () {
@@ -66,8 +70,7 @@ Route::group(['middleware' => ['role:wali_murid']], function() {
 
     Route::patch('/informasi-siswa/update/{id}', [InformasiSiswaController::class, 'update'])->name('informasi-siswa.update');
 
-    Route::post('/logout',[AuthController::class, 'logout'])->name('logout.logout');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout.logout');
 
     Route::get('/export-informasi-siswa', [InformasiSiswaController::class, 'export']);
 });
-
