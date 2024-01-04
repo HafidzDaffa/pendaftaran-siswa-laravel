@@ -32,6 +32,14 @@ Route::get('/register', function () {
     return view('register.index');
 })->name('register.index');
 
+Route::get('/admin/siswa', function () {
+    return view('admin.siswa');
+});
+
+Route::get('/admin/wali-murid', function () {
+    return view('admin.wali-murid');
+});
+
 Route::post('/login', [AuthController::class, 'login'])->name('login.store');
 Route::post('/register', [AuthController::class, 'register'])->name('register.store');
 Route::get('/informasi-pendaftaran', function () {
@@ -42,7 +50,6 @@ Route::get('/informasi-pendaftaran', function () {
 Route::get('/galeri-sekolah', function () {
     return view('galeri-sekolah');
 });
-
 
 Route::group(['middleware' => ['role:wali_murid']], function() {
     Route::get('/lihat-informasi-siswa', [InformasiSiswaController::class, 'index'])->name('lihat-informasi-siswa');
@@ -63,3 +70,4 @@ Route::group(['middleware' => ['role:wali_murid']], function() {
 
     Route::get('/export-informasi-siswa', [InformasiSiswaController::class, 'export']);
 });
+
