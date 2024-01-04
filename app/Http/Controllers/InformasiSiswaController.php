@@ -5,6 +5,8 @@ use Illuminate\Http\Request;
 use App\Models\InformasiSiswa;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Exports\InformasiSiswaExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class InformasiSiswaController extends Controller
 {
@@ -238,6 +240,23 @@ class InformasiSiswaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $informasi_siswa = InformasiSiswa::find($id);
+
+        Storage::disk('public')->delete($informasi_siswa->pas_foto);
+
+        Storage::disk('public')->delete($informasi_siswa->akta_kelahiran);
+
+        Storage::disk('public')->delete($informasi_siswa->kartu_keluarga);
+
+        Storage::disk('public')->delete($informasi_siswa->ktp_ortu);
+
+        $informasi_siswa->delete();
+
+        return redirect()->back();
+    }
+
+    public function export()
+    {
+        return Excel::download(new InformasiSiswaExport, 'DataInformasiSiswa'.'.xlsx', 'Xlsx');
     }
 }

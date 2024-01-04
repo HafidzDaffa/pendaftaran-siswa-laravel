@@ -60,4 +60,6 @@ Route::group(['middleware' => ['role:wali_murid']], function() {
     Route::patch('/informasi-siswa/update/{id}', [InformasiSiswaController::class, 'update'])->name('informasi-siswa.update');
 
     Route::post('/logout',[AuthController::class, 'logout'])->name('logout.logout');
+
+    Route::get('/export-informasi-siswa', [InformasiSiswaController::class, 'export']);
 });
