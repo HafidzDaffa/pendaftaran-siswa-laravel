@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="w-full flex flex-col py-[40px] px-[55px] gap-y-[80px] text-[24px]">
-    <form action="{{ route('informasi-siswa.update') }}" enctype="multipart/form-data" method="post" class="px-[48px] py-[66px] flex flex-col gap-y-[108px] items-center">
+    <form action="{{ route('informasi-siswa.update', ['id' => $informasi_siswa->id]) }}" enctype="multipart/form-data" method="post" class="px-[48px] py-[66px] flex flex-col gap-y-[108px] items-center">
         @method('PATCH')
         @csrf
         <div class="w-full flex flex-col rounded-lg">

@@ -28,7 +28,7 @@ class AuthController extends Controller
             }
             else
             {
-                return redirect()->intended('/pendaftar-baru');
+                return redirect()->intended('/dashboard');
             }
         }
        

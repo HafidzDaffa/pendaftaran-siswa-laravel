@@ -13,7 +13,7 @@
         <div class="bg-primary py-[33px] px-[39px] flex justify-between">
             <h1 class="font-bold">Pendaftaran Murid Baru</h1>
             @if(!empty($informasi_siswa))
-                <a href="/informasi-siswa/edit" class="bg-green-500 rounded-lg px-[34px] py-[8px] text-[18px] text-white font-bold hover:bg-green-700 transition-all duration-300">Edit</a>
+                <a href="{{ route('informasi-siswa.edit', ['id' => $informasi_siswa->id]) }}" class="bg-green-500 rounded-lg px-[34px] py-[8px] text-[18px] text-white font-bold hover:bg-green-700 transition-all duration-300">Edit</a>
             @endif
         </div>
         <div class="px-[48px] py-[66px] flex flex-col gap-y-[108px] items-center">

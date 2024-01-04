@@ -121,9 +121,9 @@ class InformasiSiswaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit()
+    public function edit(string $id)
     {
-        $informasi_siswa = InformasiSiswa::where('user_id', '=', Auth::user()->id)->first();
+        $informasi_siswa = InformasiSiswa::where('id', '=', $id)->first();
 
         return view('informasi-siswa.edit', compact('informasi_siswa'));
     }
@@ -131,7 +131,7 @@ class InformasiSiswaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request)
+    public function update(Request $request, string $id)
     {
         $this->validate($request, [
             'nama_lengkap' => 'required',
@@ -162,7 +162,7 @@ class InformasiSiswaController extends Controller
             'kepemilikan_rumah' => $request->kepemilikan_rumah,
         ];
 
-        $informasi_siswa = InformasiSiswa::where('user_id', '=', Auth::user()->id)->first();
+        $informasi_siswa = InformasiSiswa::where('id', '=', $id)->first();
         
         if($request->hasFile('pas_foto'))
         {

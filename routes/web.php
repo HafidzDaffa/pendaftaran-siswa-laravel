@@ -51,9 +51,9 @@ Route::group(['middleware' => ['role:wali_murid']], function() {
 
     Route::post('/informasi-siswa/store', [InformasiSiswaController::class, 'store'])->name('informasi-siswa.store');
 
-    Route::get('/informasi-siswa/edit', [InformasiSiswaController::class, 'edit'])->name('informasi-siswa.edit');
+    Route::get('/informasi-siswa/edit/{id}', [InformasiSiswaController::class, 'edit'])->name('informasi-siswa.edit');
 
-    Route::patch('/informasi-siswa/update', [InformasiSiswaController::class, 'update'])->name('informasi-siswa.update');
+    Route::patch('/informasi-siswa/update/{id}', [InformasiSiswaController::class, 'update'])->name('informasi-siswa.update');
 
     Route::post('/logout',[AuthController::class, 'logout'])->name('logout.logout');
 });
