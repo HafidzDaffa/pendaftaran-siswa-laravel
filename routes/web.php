@@ -34,8 +34,13 @@ Route::get('/informasi-pendaftaran', function () {
     return view('informasi-pendaftaran');
 });
 
+
 Route::get('/galeri-sekolah', function () {
     return view('galeri-sekolah');
+});
+
+Route::get('/pendaftar-baru', function () {
+    return view('pendaftar-baru');
 });
 
 Route::group(['middleware' => ['role:wali_murid']], function() {
