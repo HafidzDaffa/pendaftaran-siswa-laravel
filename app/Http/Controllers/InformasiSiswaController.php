@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\InformasiSiswa;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class InformasiSiswaController extends Controller
 {
@@ -12,9 +13,9 @@ class InformasiSiswaController extends Controller
      */
     public function index()
     {
-        $informasi_siswas = InformasiSiswa::where('user_id', '=', Auth::user()->id)->first();
+        $informasi_siswa = InformasiSiswa::where('user_id',  Auth::user()->id)->first();
 
-        return redirect()->route('informasi_siswa.index')->with('informasi_siswas', $informasi_siswas);
+        return view('lihat-informasi-siswa', compact('informasi_siswa'));
     }
 
     /**
@@ -38,9 +39,9 @@ class InformasiSiswaController extends Controller
             'nama_ortu' => 'required',
             'no_hp' => 'required',
             'pekerjaan_ortu' => 'required',
-            'penghasilan_ortu' => 'required',
+            'penghasilan_ortu' => 'required|numeric',
             'kepemilikan_rumah' => 'required',
-            'pas_foto' => 'required|max:2048|mimes:jpg,png,jpeg,pdf',
+            'pas_foto' => 'required|max:2048|mimes:jpg,png,jpeg',
             'akta_kelahiran' => 'required|max:2048|mimes:jpg,png,jpeg,pdf',
             'kartu_keluarga' => 'required|max:2048|mimes:jpg,png,jpeg,pdf',
             'ktp_ortu' => 'required|max:2048|mimes:jpg,png,jpeg,pdf',
@@ -105,6 +106,8 @@ class InformasiSiswaController extends Controller
 
         $informasi_siswa = InformasiSiswa::create($input);
 
+        return redirect()->route('lihat-informasi-siswa');
+
     }
 
     /**
@@ -118,17 +121,17 @@ class InformasiSiswaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit()
     {
-        $informasi_siswas = InformasiSiswa::where('user_id', '=', Auth::user()->id)->first();
+        $informasi_siswa = InformasiSiswa::where('user_id', '=', Auth::user()->id)->first();
 
-        return redirect()->route('informasi_siswa.index')->with('informasi_siswas', $informasi_siswas);
+        return view('informasi-siswa.edit', compact('informasi_siswa'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
         $this->validate($request, [
             'nama_lengkap' => 'required',
@@ -140,7 +143,7 @@ class InformasiSiswaController extends Controller
             'pekerjaan_ortu' => 'required',
             'penghasilan_ortu' => 'required',
             'kepemilikan_rumah' => 'required',
-            'pas_foto' => 'nullable|max:2048|mimes:jpg,png,jpeg,pdf',
+            'pas_foto' => 'nullable|max:2048|mimes:jpg,png,jpeg',
             'akta_kelahiran' => 'nullable|max:2048|mimes:jpg,png,jpeg,pdf',
             'kartu_keluarga' => 'nullable|max:2048|mimes:jpg,png,jpeg,pdf',
             'ktp_ortu' => 'nullable|max:2048|mimes:jpg,png,jpeg,pdf',
@@ -226,6 +229,8 @@ class InformasiSiswaController extends Controller
         }
 
         $informasi_siswa = $informasi_siswa->update($input);
+
+        return redirect()->route('lihat-informasi-siswa');
     }
 
     /**

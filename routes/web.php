@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\InformasiSiswaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,18 +34,29 @@ Route::get('/informasi-pendaftaran', function () {
     return view('informasi-pendaftaran');
 });
 
-Route::get('/pendaftar-baru', function () {
-    return view('pendaftar-baru');
-});
-
-Route::get('/lihat-informasi-siswa', function () {
-    return view('lihat-informasi-siswa');
-});
-
-Route::get('/informasi-siswa', function () {
-    return view('informasi-siswa');
-});
 
 Route::get('/galeri-sekolah', function () {
     return view('galeri-sekolah');
 });
+
+Route::get('/pendaftar-baru', function () {
+    return view('pendaftar-baru');
+});
+
+Route::group(['middleware' => ['role:wali_murid']], function() {
+    Route::get('/lihat-informasi-siswa', [InformasiSiswaController::class, 'index'])->name('lihat-informasi-siswa');
+
+    Route::get('/informasi-siswa', function () {
+        return view('informasi-siswa.create');
+    });
+
+    Route::post('/informasi-siswa/store', [InformasiSiswaController::class, 'store'])->name('informasi-siswa.store');
+
+    Route::get('/informasi-siswa/edit', [InformasiSiswaController::class, 'edit'])->name('informasi-siswa.edit');
+
+    Route::patch('/informasi-siswa/update', [InformasiSiswaController::class, 'update'])->name('informasi-siswa.update');
+});
+
+
+
+

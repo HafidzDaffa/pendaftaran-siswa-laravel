@@ -14,8 +14,15 @@
             <h1 class="font-bold">Pendaftaran Murid Baru</h1>
         </div>
         <div class="px-[48px] py-[66px] flex flex-col gap-y-[108px] items-center">
-            <div class="border border-black border-1 rounded-lg w-[270px] h-[359px] flex items-center justify-center">
+            {{-- <div class="border border-black border-1 rounded-lg w-[270px] h-[359px] flex items-center justify-center">
                 Pas Foto
+            </div> --}}
+            <div class="border border-black border-1 rounded-lg w-[270px] h-[359px] flex items-center justify-center">
+                @if(!empty($informasi_siswa->pas_foto))
+                    <img class="w-full h-full" src="{{ url('storage/'.$informasi_siswa->pas_foto) }}" alt="">
+                @else
+                    Pass Foto
+                @endif
             </div>
             <div class="w-full flex flex-col rounded-lg">
                 <div class="bg-primary p-[15px] rounded-lg">
@@ -37,11 +44,11 @@
                         <h3>:</h3>
                     </div>
                     <div class="flex flex-col gap-y-[32px] col-span-3">
-                        <h3>John Doe</h3>
-                        <h3>088123123123</h3>
-                        <h3>Karyawan Swasta</h3>
-                        <h3>Rp 4.000.000</h3>
-                        <h3>Rumah sendiri</h3>
+                        <h3>{{ $informasi_siswa->nama_lengkap ?? '-' }}</h3>
+                        <h3>{{ $informasi_siswa->phone ?? '-' }}</h3>
+                        <h3>{{ $informasi_siswa->pekerjaan_ortu ?? '-' }}</h3>
+                        <h3>Rp {{ number_format($informasi_siswa->penghasilan_ortu ?? 0 , 0, ',', '.'); }}</h3>
+                        <h3>{{ $informasi_siswa->kepemilikan_rumah ?? '-' }}</h3>
                     </div>
                 </div>
             </div>
@@ -51,22 +58,22 @@
                 </div>
                 <div class="grid grid-cols-6 py-[54px]">
                     <div class="flex flex-col gap-y-[32px] col-span-2">
-                        <h3>Pas Foto</h3>
+                        {{-- <h3>Pas Foto</h3> --}}
                         <h3>Akta Kelahiran</h3>
                         <h3>Kartu Keluarga</h3>
                         <h3>KTP Orang Tua/Wali Murid</h3>
                     </div>
                     <div class="flex flex-col gap-y-[32px]">
-                        <h3>:</h3>
+                        {{-- <h3>:</h3> --}}
                         <h3>:</h3>
                         <h3>:</h3>
                         <h3>:</h3>
                     </div>
                     <div class="flex flex-col gap-y-[32px] col-span-3">
-                        <h3>foto.jpg/jpeg/png</h3>
-                        <h3>foto.jpg/jpeg/png</h3>
-                        <h3>foto.jpg/jpeg/png</h3>
-                        <h3>foto.jpg/jpeg/png</h3>
+                        {{-- <h3>foto.jpg/jpeg/png</h3> --}}
+                        <h3>{{ $informasi_siswa->akta_kelahiran ?? '-' }}</h3>
+                        <h3>{{ $informasi_siswa->kartu_keluarga ?? '-' }}</h3>
+                        <h3>{{ $informasi_siswa->ktp_ortu ?? '-' }}</h3>
                     </div>
                 </div>
                 <div class="self-center mt-[50px]">
