@@ -15,9 +15,9 @@ class InformasiSiswaController extends Controller
      */
     public function index()
     {
-        $informasi_siswa = InformasiSiswa::where('user_id',  Auth::user()->id)->first();
-
-        return view('lihat-informasi-siswa', compact('informasi_siswa'));
+        $informasi_siswas = InformasiSiswa::latest()->get();
+        
+        return view('admin.siswa', compact('informasi_siswas'));
     }
 
     /**
@@ -115,9 +115,11 @@ class InformasiSiswaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show()
     {
-        //
+        $informasi_siswa = InformasiSiswa::where('user_id',  Auth::user()->id)->first();
+
+        return view('lihat-informasi-siswa', compact('informasi_siswa'));
     }
 
     /**

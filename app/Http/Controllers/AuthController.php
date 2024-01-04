@@ -24,7 +24,7 @@ class AuthController extends Controller
             $role = Auth::user()->role;
             if($role == 'admin')
             {
-                return redirect()->intended('/');
+                return redirect()->intended('/admin/siswa');
             }
             else
             {

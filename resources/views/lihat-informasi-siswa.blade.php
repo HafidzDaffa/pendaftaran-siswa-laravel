@@ -80,7 +80,7 @@
                     </div>
                 </div>
                 <div class="self-center mt-[50px]">
-                    <a href="/register" class="bg-secondary rounded-lg px-[51px] py-[14px] text-[18px] text-white font-bold hover:bg-sky-700 transition-all duration-300">Cek Kelulusan</a>
+                    <a href="/kelulusan" class="bg-secondary rounded-lg px-[51px] py-[14px] text-[18px] text-white font-bold hover:bg-sky-700 transition-all duration-300">Cek Kelulusan</a>
                 </div>
             </div>
         </div>

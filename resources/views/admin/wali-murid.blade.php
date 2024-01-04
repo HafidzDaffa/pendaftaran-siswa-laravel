@@ -10,8 +10,9 @@
 </head>
 
 <body>
+    @include("components.navbar-two")
     <div class="bg-background w-full h-screen flex overflow-hidden">
-        @include("components.sidebar")
+        {{-- @include("components.sidebar") --}}
         <div class="flex-col w-full h-full bg-white">
             <div class="flex flex-col w-full mt-5 p-5">
                 <div class="flex w-full items-center justify-end my-4 gap-x-5">
@@ -28,92 +29,40 @@
                                             #
                                         </th>
                                         <th scope="col" class="border-r px-6 py-4 dark:border-neutral-500">
-                                            First
+                                            Nama
                                         </th>
                                         <th scope="col" class="border-r px-6 py-4 dark:border-neutral-500">
-                                            Last
+                                            Email
                                         </th>
                                         <th scope="col" class="border-r px-6 py-4 dark:border-neutral-500">
-                                            Last
+                                            No Wa
                                         </th>
-                                        <th scope="col" class="border-r px-6 py-4 dark:border-neutral-500">
-                                            Last
-                                        </th>
-                                        <th scope="col" class="border-r px-6 py-4 dark:border-neutral-500">
-                                            Last
-                                        </th>
-                                        <th scope="col" class="border-r px-6 py-4 dark:border-neutral-500">
-                                            Last
-                                        </th>
-                                        <th scope="col" class="border-r px-6 py-4 dark:border-neutral-500">
-                                            Last
-                                        </th>
-                                        <th scope="col" class="border-r px-6 py-4 dark:border-neutral-500">
-                                            Last
+                                        <th scope="col" class="border-r px-6 py-4 w-[300px] dark:border-neutral-500">
+                                            Action
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($users as $user)
                                     <tr class="border-b dark:border-neutral-500">
                                         <td class="whitespace-nowrap border-r px-6 py-4 font-medium dark:border-neutral-500">
-                                            1
+                                            {{ $loop->iteration }}
                                         </td>
                                         <td class="whitespace-nowrap border-r px-6 py-4 dark:border-neutral-500">
-                                            Mark
+                                            {{ $user->nama }}
                                         </td>
                                         <td class="whitespace-nowrap border-r px-6 py-4 dark:border-neutral-500">
-                                            Otto
+                                            {{ $user->email }}
                                         </td>
                                         <td class="whitespace-nowrap border-r px-6 py-4 dark:border-neutral-500">
-                                            Otto
-                                        </td>
-                                        <td class="whitespace-nowrap border-r px-6 py-4 dark:border-neutral-500">
-                                            Otto
-                                        </td>
-                                        <td class="whitespace-nowrap border-r px-6 py-4 dark:border-neutral-500">
-                                            Otto
-                                        </td>
-                                        <td class="whitespace-nowrap border-r px-6 py-4 dark:border-neutral-500">
-                                            Otto
-                                        </td>
-                                        <td class="whitespace-nowrap border-r px-6 py-4 dark:border-neutral-500">
-                                            Otto
+                                            {{ $user->no_wa }}
                                         </td>
                                         <td class="whitespace-nowrap px-6 py-4 dark:border-neutral-500 flex justify-around items-center">
                                             <button class="bg-green-500 hover:bg-green-700 text-white px-5 py-2 rounded-lg">Edit</button>
                                             <button class="bg-red-500 hover:bg-red-700 text-white px-5 py-2 rounded-lg">Delete</button>
                                         </td>
                                     </tr>
-                                    <tr class="border-b dark:border-neutral-500">
-                                        <td class="whitespace-nowrap border-r px-6 py-4 font-medium dark:border-neutral-500">
-                                            2
-                                        </td>
-                                        <td class="whitespace-nowrap border-r px-6 py-4 dark:border-neutral-500">
-                                            Jacob
-                                        </td>
-                                        <td class="whitespace-nowrap border-r px-6 py-4 dark:border-neutral-500">
-                                            Thornton
-                                        </td>
-                                        <td class="whitespace-nowrap border-r px-6 py-4 dark:border-neutral-500">
-                                            Thornton
-                                        </td>
-                                        <td class="whitespace-nowrap border-r px-6 py-4 dark:border-neutral-500">
-                                            Thornton
-                                        </td>
-                                        <td class="whitespace-nowrap border-r px-6 py-4 dark:border-neutral-500">
-                                            Thornton
-                                        </td>
-                                        <td class="whitespace-nowrap border-r px-6 py-4 dark:border-neutral-500">
-                                            Thornton
-                                        </td>
-                                        <td class="whitespace-nowrap border-r px-6 py-4 dark:border-neutral-500">
-                                            Thornton
-                                        </td>
-                                        <td class="whitespace-nowrap px-6 py-4 dark:border-neutral-500 flex justify-around items-center">
-                                            <button class="bg-green-500 hover:bg-green-700 text-white px-5 py-2 rounded-lg">Edit</button>
-                                            <button class="bg-red-500 hover:bg-red-700 text-white px-5 py-2 rounded-lg">Delete</button>
-                                        </td>
-                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

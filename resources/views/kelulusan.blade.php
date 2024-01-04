@@ -11,7 +11,7 @@
     @include("components.navbar-two")
     <div class="items-center flex flex-col pt-[90px] px-[55px] gap-y-[80px] pb-[400px]">
         <div class="flex justify-center flex-col bg-primary gap-y-[56px] w-[60%] h-[396px] rounded-2xl items-center text-[24px]">
-            <p class="text-center">Selamat John Doe, <br /> Anda dinyatakan...</p>
+            <p class="text-center">Selamat<br /> Anda dinyatakan...</p>
             <p class="font-bold text-2xl">LULUS</p>
         </div>
     </div>

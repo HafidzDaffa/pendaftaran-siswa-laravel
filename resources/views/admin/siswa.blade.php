@@ -10,13 +10,14 @@
 </head>
 
 <body>
-    <div class="bg-background w-full h-screen flex overflow-hidden">
-        @include("components.sidebar")
+    @include("components.navbar-two")
+    <div class="bg-background w-full h-screen mt-[100px] flex overflow-hidden">
+        {{-- @include("components.sidebar") --}}
         <div class="flex-col w-full h-full bg-white">
             <div class="flex flex-col w-full mt-5 p-5">
                 <div class="flex w-full items-center justify-end my-4 gap-x-5">
-                    <button class="bg-orange-500 hover:bg-orange-600 px-5 py-2 rounded-lg text-white">Export</button>
-                    <button class="bg-blue-500 hover:bg-blue-700 px-5 py-2 rounded-lg text-white">Tambah</button>
+                    <a href="{{ route('export-informasi-siswa.export') }}" class="bg-orange-500 hover:bg-orange-600 px-5 py-2 rounded-lg text-white">Export</a>
+                    {{-- <button class="bg-blue-500 hover:bg-blue-700 px-5 py-2 rounded-lg text-white">Tambah</button> --}}
                 </div>
                 <div class="overflow-x-auto sm:-mx-6 lg:-mx-8 overflow-y-scroll">
                     <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
@@ -28,92 +29,80 @@
                                             #
                                         </th>
                                         <th scope="col" class="border-r px-6 py-4 dark:border-neutral-500">
-                                            First
+                                            Nama lengkap
                                         </th>
                                         <th scope="col" class="border-r px-6 py-4 dark:border-neutral-500">
-                                            Last
+                                            Tempat tanggal lahir
                                         </th>
                                         <th scope="col" class="border-r px-6 py-4 dark:border-neutral-500">
-                                            Last
+                                            Jenis kelamin
                                         </th>
                                         <th scope="col" class="border-r px-6 py-4 dark:border-neutral-500">
-                                            Last
+                                            Alamat
                                         </th>
                                         <th scope="col" class="border-r px-6 py-4 dark:border-neutral-500">
-                                            Last
+                                            Nama orang tua
                                         </th>
                                         <th scope="col" class="border-r px-6 py-4 dark:border-neutral-500">
-                                            Last
+                                            No Hp
                                         </th>
                                         <th scope="col" class="border-r px-6 py-4 dark:border-neutral-500">
-                                            Last
+                                            Pekerjaan orang tua
                                         </th>
                                         <th scope="col" class="border-r px-6 py-4 dark:border-neutral-500">
-                                            Last
+                                            Penghasilan orang tua
+                                        </th>
+                                        <th scope="col" class="border-r px-6 py-4 dark:border-neutral-500">
+                                            Kepemilikan rumah
+                                        </th>
+                                        <th scope="col" class="border-r px-6 py-4 dark:border-neutral-500">
+                                            Action
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($informasi_siswas as $informasi_siswa)
                                     <tr class="border-b dark:border-neutral-500">
                                         <td class="whitespace-nowrap border-r px-6 py-4 font-medium dark:border-neutral-500">
-                                            1
+                                            {{ $loop->iteration }}
                                         </td>
                                         <td class="whitespace-nowrap border-r px-6 py-4 dark:border-neutral-500">
-                                            Mark
+                                            {{ $informasi_siswa->nama_lengkap }}
                                         </td>
                                         <td class="whitespace-nowrap border-r px-6 py-4 dark:border-neutral-500">
-                                            Otto
+                                            {{ $informasi_siswa->ttl }}
                                         </td>
                                         <td class="whitespace-nowrap border-r px-6 py-4 dark:border-neutral-500">
-                                            Otto
+                                            {{ $informasi_siswa->jenis_kelamin }}
                                         </td>
                                         <td class="whitespace-nowrap border-r px-6 py-4 dark:border-neutral-500">
-                                            Otto
+                                            {{ $informasi_siswa->alamat }}
                                         </td>
                                         <td class="whitespace-nowrap border-r px-6 py-4 dark:border-neutral-500">
-                                            Otto
+                                            {{ $informasi_siswa->nama_ortu }}
                                         </td>
                                         <td class="whitespace-nowrap border-r px-6 py-4 dark:border-neutral-500">
-                                            Otto
+                                            {{ $informasi_siswa->no_hp }}
                                         </td>
                                         <td class="whitespace-nowrap border-r px-6 py-4 dark:border-neutral-500">
-                                            Otto
+                                            {{ $informasi_siswa->pekerjaan_ortu }}
+                                        </td>
+                                        <td class="whitespace-nowrap border-r px-6 py-4 dark:border-neutral-500">
+                                            {{ $informasi_siswa->penghasilan_ortu }}
+                                        </td>
+                                        <td class="whitespace-nowrap border-r px-6 py-4 dark:border-neutral-500">
+                                            {{ $informasi_siswa->kepemilikan_rumah }}
                                         </td>
                                         <td class="whitespace-nowrap px-6 py-4 dark:border-neutral-500 flex justify-around items-center">
-                                            <button class="bg-green-500 hover:bg-green-700 text-white px-5 py-2 rounded-lg">Edit</button>
-                                            <button class="bg-red-500 hover:bg-red-700 text-white px-5 py-2 rounded-lg">Delete</button>
+                                            <a href="{{ route('informasi-siswa.edit', [$informasi_siswa->id]) }}" class="bg-green-500 hover:bg-green-700 text-white px-5 py-2 rounded-lg">Edit</a>
+                                            <form action="{{ route('informasi-siswa.delete', [$informasi_siswa->id]) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="bg-red-500 hover:bg-red-700 text-white px-5 py-2 rounded-lg">Delete</button>
+                                            </form>
                                         </td>
                                     </tr>
-                                    <tr class="border-b dark:border-neutral-500">
-                                        <td class="whitespace-nowrap border-r px-6 py-4 font-medium dark:border-neutral-500">
-                                            2
-                                        </td>
-                                        <td class="whitespace-nowrap border-r px-6 py-4 dark:border-neutral-500">
-                                            Jacob
-                                        </td>
-                                        <td class="whitespace-nowrap border-r px-6 py-4 dark:border-neutral-500">
-                                            Thornton
-                                        </td>
-                                        <td class="whitespace-nowrap border-r px-6 py-4 dark:border-neutral-500">
-                                            Thornton
-                                        </td>
-                                        <td class="whitespace-nowrap border-r px-6 py-4 dark:border-neutral-500">
-                                            Thornton
-                                        </td>
-                                        <td class="whitespace-nowrap border-r px-6 py-4 dark:border-neutral-500">
-                                            Thornton
-                                        </td>
-                                        <td class="whitespace-nowrap border-r px-6 py-4 dark:border-neutral-500">
-                                            Thornton
-                                        </td>
-                                        <td class="whitespace-nowrap border-r px-6 py-4 dark:border-neutral-500">
-                                            Thornton
-                                        </td>
-                                        <td class="whitespace-nowrap px-6 py-4 dark:border-neutral-500 flex justify-around items-center">
-                                            <button class="bg-green-500 hover:bg-green-700 text-white px-5 py-2 rounded-lg">Edit</button>
-                                            <button class="bg-red-500 hover:bg-red-700 text-white px-5 py-2 rounded-lg">Delete</button>
-                                        </td>
-                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -122,6 +111,8 @@
             </div>
         </div>
     </div>
+    {{-- @include("components.footer") --}}
 </body>
+
 
 </html>
