@@ -22,13 +22,17 @@ Route::get('/login', function () {
     return view('login.index');
 })->name('login.index');
 
+Route::get('/login-admin', function () {
+    return view('login.index');
+})->name('login.admin');
+
 Route::get('/register', function () {
     return view('register.index');
 })->name('register.index');
 
 Route::post('/login', [AuthController::class, 'login'])->name('login.store');
 Route::post('/register', [AuthController::class, 'register'])->name('register.store');
-});
+
 
 Route::get('/informasi-pendaftaran', function () {
     return view('informasi-pendaftaran');
@@ -37,3 +41,4 @@ Route::get('/informasi-pendaftaran', function () {
 Route::get('/galeri-sekolah', function () {
     return view('galeri-sekolah');
 });
+
