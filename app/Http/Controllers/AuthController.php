@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -23,13 +24,11 @@ class AuthController extends Controller
             $role = Auth::user()->role;
             if($role == 'admin')
             {
-                $request->session()->regenerate();
                 return redirect()->intended('/');
             }
             else
             {
-                $request->session()->regenerate();
-                return redirect()->intended('/');
+                return redirect()->intended('/dashboard');
             }
         }
        
@@ -39,6 +38,7 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $this->validate($request, [
+            'nama' => 'required',
             'email' => 'required|email|unique:users,email',
             'no_wa' => 'required',
             'password' => 'required|min:8',
@@ -47,6 +47,7 @@ class AuthController extends Controller
         $input = $request->all();
 
         User::create([
+            'nama' => $input['nama'],
             "email" => $input['email'],
             "password" => Hash::make($input['password']),
             'no_wa' => "0813212321312",
@@ -55,5 +56,12 @@ class AuthController extends Controller
         ]);
 
         return redirect()->route('login.index');
+    }
+
+    public function logout(Request $request){
+        Auth::logout();
+        Session::flush();
+
+        return redirect('/');
     }
 }

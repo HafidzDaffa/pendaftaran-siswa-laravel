@@ -10,6 +10,11 @@ Register
     <form action="{{ route('register.store') }}" method="post" class="flex flex-col w-full px-5">
         @csrf
         <div class="mb-8">
+            <label for="nama" class="block text-sm font-medium text-gray-600">Nama:</label>
+            <input type="nama" id="nama" name="nama" value="{{ old('nama') }}" class="form-input rounded-lg p-3 border border-black w-full" required>
+            @error('nama') <span class="text-red-500">{{ $message }}</span> @enderror
+        </div>
+        <div class="mb-8">
             <label for="email" class="block text-sm font-medium text-gray-600">Email:</label>
             <input type="email" id="email" name="email" value="{{ old('email') }}" class="form-input rounded-lg p-3 border border-black w-full" required>
             @error('email') <span class="text-red-500">{{ $message }}</span> @enderror
@@ -23,6 +28,9 @@ Register
             <label for="password" class="block text-sm font-medium text-gray-600">Password:</label>
             <input type="password" id="password" name="password" value="{{ old('password') }}" class="form-input rounded-lg p-3 border border-black w-full" required>
             @error('password') <span class="text-red-500">{{ $message }}</span> @enderror
+        </div>
+        <div class="mb-8 text-center">
+            <a href="/login" class="hover:text-secondary transition-all duration-300 font-semibold cursor-pointer">Sudah punya akun? Login</a>
         </div>
         <button type="submit" class="w-full bg-secondary hover:bg-sky-700 text-white p-3 rounded-lg">Daftar</button>
     </form>
