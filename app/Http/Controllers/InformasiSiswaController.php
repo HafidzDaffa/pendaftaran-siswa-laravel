@@ -279,4 +279,11 @@ class InformasiSiswaController extends Controller
 
         return view('lihat-informasi-siswa-admin', compact('informasi_siswa'));
     }
+
+    public function lihatKelulusan(string $id)
+    {
+        $informasi_siswa = InformasiSiswa::where('id', '=',  $id)->first();
+
+        return view('kelulusan', compact('informasi_siswa'));
+    }
 }

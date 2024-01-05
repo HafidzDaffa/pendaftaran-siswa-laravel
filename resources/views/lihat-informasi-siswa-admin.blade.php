@@ -33,8 +33,8 @@
                 </div>
                 <div class="grid grid-cols-6 py-[54px]">
                     <div class="flex flex-col gap-y-[32px] col-span-2">
-                        <h3>Nama Orang Tua/Wali Murid</h3>
-                        <h3>No. HP</h3>
+                        <h3>Nama Siswa</h3>
+                        <h3>No. HP Orang Tua</h3>
                         <h3>Pekerjaan Orang Tua</h3>
                         <h3>Penghasilan Orang Tua</h3>
                         <h3>Kepemilikan Ruma</h3>
@@ -80,7 +80,7 @@
                     </div>
                 </div>
                 <div class="self-center mt-[50px]">
-                    <a href="/kelulusan" class="bg-secondary rounded-lg px-[51px] py-[14px] text-[18px] text-white font-bold hover:bg-sky-700 transition-all duration-300">Cek Kelulusan</a>
+                    <a href="{{ route('lihat-kelulusan', ['id' => $informasi_siswa->id]) }}" class="bg-secondary rounded-lg px-[51px] py-[14px] text-[18px] text-white font-bold hover:bg-sky-700 transition-all duration-300">Cek Kelulusan</a>
                 </div>
             </div>
         </div>

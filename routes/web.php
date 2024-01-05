@@ -76,9 +76,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/lihat-informasi-siswa/admin/{id}', [InformasiSiswaController::class, 'showOnAdmin'])->name('lihat-informasi-siswa-admin');
     });
     
-    Route::get('/kelulusan', function () {
-        return view('kelulusan');
-    });
+    Route::get('/kelulusan/{id}', [InformasiSiswaCOntroller::class, 'lihatKelulusan'])->name('lihat-kelulusan');
     Route::get('/lihat-informasi-siswa', [InformasiSiswaController::class, 'show'])->name('lihat-informasi-siswa');
     Route::get('/informasi-siswa/edit/{id}', [InformasiSiswaController::class, 'edit'])->name('informasi-siswa.edit');
     Route::patch('/informasi-siswa/update/{id}', [InformasiSiswaController::class, 'update'])->name('informasi-siswa.update');
