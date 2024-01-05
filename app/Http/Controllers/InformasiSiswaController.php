@@ -155,7 +155,6 @@ class InformasiSiswaController extends Controller
         ]);
 
         $input = [
-            'user_id' => Auth::user()->id,
             'nama_lengkap' => $request->nama_lengkap,
             'ttl' => $request->ttl,
             'jenis_kelamin' => $request->jenis_kelamin,
