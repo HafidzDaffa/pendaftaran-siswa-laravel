@@ -27,6 +27,7 @@ class InformasiSiswaExport implements FromCollection, WithHeadings, WithColumnFo
                 'pekerjaan_ortu' => $val->pekerjaan_ortu,
                 'penghasilan_ortu' => $val->penghasilan_ortu,
                 'kepemilikan_rumah' => $val->kepemilikan_rumah,
+                'status' => $val->status,
             ];
         });
 
