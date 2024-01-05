@@ -24,6 +24,7 @@ class InformasiSiswa extends Model
         'akta_kelahiran',
         'kartu_keluarga',
         'ktp_ortu',
+        'status',
     ];
 
     public function user()

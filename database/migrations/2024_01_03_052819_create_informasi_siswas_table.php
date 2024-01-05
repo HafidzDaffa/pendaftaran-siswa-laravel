@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('akta_kelahiran')->nullable();
             $table->string('kartu_keluarga')->nullable();
             $table->string('ktp_ortu')->nullable();
+            $table->enum('status', ['lulus', 'tidak_lulus', '-'])->default('-');
             $table->timestamps();
         });
     }

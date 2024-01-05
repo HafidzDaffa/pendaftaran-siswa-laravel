@@ -96,8 +96,10 @@
                     <label for="akta">Akta Kelahiran</label>
                     <label for="kk">Kartu Keluarga</label>
                     <label for="ktp">KTP Orang Tua/Wali Murid</label>
+                    <label for="status">Status</label>
                 </div>
                 <div class="flex flex-col gap-y-[52px]">
+                    <h3>:</h3>
                     <h3>:</h3>
                     <h3>:</h3>
                     <h3>:</h3>
@@ -132,6 +134,18 @@
                     @error('ktp_ortu')
                         <span class="text-red-500">{{ $message }}</span>
                     @enderror
+                    @if(auth()->user()->role == 'admin')
+                        <div class="flex flex-row items-center gap-4">
+                            <select name="status" id="status" value="{{ $informasi_siswa->status }}" class="form-input rounded-lg p-2 border border-black w-1/2">
+                                <option value="-" @if($informasi_siswa->status == '-') selected @endif>-</option>
+                                <option value="lulus" @if($informasi_siswa->status == 'lulus') selected @endif>Lulus</option>
+                                <option value="tidak_lulus" @if($informasi_siswa->status == 'tidak_lulus') selected @endif>Tidak lulus</option>
+                            </select>
+                        </div>
+                        @error('status')
+                            <span class="text-red-500">{{ $message }}</span>
+                        @enderror
+                    @endif
                 </div>
             </div>
             <div class="mx-auto">

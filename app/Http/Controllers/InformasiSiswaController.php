@@ -151,6 +151,7 @@ class InformasiSiswaController extends Controller
             'akta_kelahiran' => 'nullable|max:2048|mimes:jpg,png,jpeg,pdf',
             'kartu_keluarga' => 'nullable|max:2048|mimes:jpg,png,jpeg,pdf',
             'ktp_ortu' => 'nullable|max:2048|mimes:jpg,png,jpeg,pdf',
+            'status' => 'nullable',
         ]);
 
         $input = [
@@ -164,6 +165,7 @@ class InformasiSiswaController extends Controller
             'pekerjaan_ortu' => $request->pekerjaan_ortu,
             'penghasilan_ortu' => $request->penghasilan_ortu,
             'kepemilikan_rumah' => $request->kepemilikan_rumah,
+            'status' => $request->status,
         ];
 
         $informasi_siswa = InformasiSiswa::where('id', '=', $id)->first();
@@ -234,7 +236,15 @@ class InformasiSiswaController extends Controller
 
         $informasi_siswa = $informasi_siswa->update($input);
 
-        return redirect()->route('lihat-informasi-siswa');
+
+        if(Auth::user()->role = "admin")
+        {
+            return redirect()->route('informasi-siswa.index');
+        }
+        else
+        {
+            return redirect()->route('lihat-informasi-siswa');
+        }
     }
 
     /**
