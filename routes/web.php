@@ -73,6 +73,7 @@ Route::middleware(['auth'])->group(function () {
         Route::patch('/walimurid-akun/update/{id}', [UserController::class, 'update'])->name('walimurid-akun.update');
         Route::delete('/walimurid-akun/delete/{id}', [UserController::class, 'destroy'])->name('walimurid-akun.delete');
         Route::get('/export-user', [UserController::class, 'export'])->name('export.user');
+        Route::get('/lihat-informasi-siswa/admin/{id}', [InformasiSiswaController::class, 'showOnAdmin'])->name('lihat-informasi-siswa-admin');
     });
     
     Route::get('/kelulusan', function () {

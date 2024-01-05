@@ -271,4 +271,12 @@ class InformasiSiswaController extends Controller
     {
         return Excel::download(new InformasiSiswaExport, 'DataInformasiSiswa'.'.xlsx', 'Xlsx');
     }
+
+
+    public function showOnAdmin(string $id)
+    {
+        $informasi_siswa = InformasiSiswa::where('id', '=',  $id)->first();
+
+        return view('lihat-informasi-siswa-admin', compact('informasi_siswa'));
+    }
 }
