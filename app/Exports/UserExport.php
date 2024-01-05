@@ -14,7 +14,7 @@ class UserExport implements FromCollection, WithHeadings, WithColumnFormatting
     */
     public function collection()
     {
-        $user = User::where('role', '=', 'wali_murid')->latest()->first();
+        $user = User::where('role', '=', 'wali_murid')->latest()->get();
 
         $data = $user->map(function($val){
             return [

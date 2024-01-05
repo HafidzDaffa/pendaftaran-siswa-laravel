@@ -93,7 +93,8 @@
                                         <td class="whitespace-nowrap border-r px-6 py-4 dark:border-neutral-500">
                                             {{ $informasi_siswa->kepemilikan_rumah }}
                                         </td>
-                                        <td class="whitespace-nowrap px-6 py-4 dark:border-neutral-500 flex justify-around items-center">
+                                        <td class="whitespace-nowrap px-2 py-4 dark:border-neutral-500 flex justify-around items-center">
+                                            <a href="{{ route('informasi-siswa.edit', [$informasi_siswa->id]) }}" class="bg-gray-500 hover:bg-green-700 text-white px-5 py-2 rounded-lg">View</a>
                                             <a href="{{ route('informasi-siswa.edit', [$informasi_siswa->id]) }}" class="bg-green-500 hover:bg-green-700 text-white px-5 py-2 rounded-lg">Edit</a>
                                             <form action="{{ route('informasi-siswa.delete', [$informasi_siswa->id]) }}" method="POST">
                                                 @csrf

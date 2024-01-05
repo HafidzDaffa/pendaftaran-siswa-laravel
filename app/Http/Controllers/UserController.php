@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\InformasiSiswa;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\UserExport;
 
 class UserController extends Controller
 {
@@ -47,7 +50,7 @@ class UserController extends Controller
             'nama' => $input['nama'],
             "email" => $input['email'],
             "password" => Hash::make($input['password']),
-            'no_wa' => "0813212321312",
+            'no_wa' => $input['no_wa'],
             'remember_token' => Str::random(10),
             'role' => 'wali_murid',
         ]);
@@ -69,6 +72,9 @@ class UserController extends Controller
     public function edit(string $id)
     {
         $user = User::where('id', '=', $id)->first();
+
+        return view('walimurid.edit', compact('user'));
+
     }
 
     /**
@@ -78,21 +84,23 @@ class UserController extends Controller
     {
         $this->validate($request, [
             'nama' => 'required',
-            'email' => 'required|email'.Rule::unique('users', 'email')->ignore($this->userId, 'id'),
+            'email' => ['required','email', Rule::unique('users', 'email')->where('id', Auth::user()->id)],
             'no_wa' => 'required',
-            'password' => 'required|min:8',
+            // 'password' => 'required|min:8',
         ]);
 
         $input = $request->all();
 
-        User::create([
+        $user = User::where('id', '=', $id)->first();
+
+        $user->update([
             'nama' => $input['nama'],
             "email" => $input['email'],
             "password" => Hash::make($input['password']),
-            'no_wa' => "0813212321312",
-            'remember_token' => Str::random(10),
-            'role' => 'wali_murid',
+            'no_wa' => $input['no_wa'],
         ]);
+
+        return redirect()->route('user.index');
     }
 
     /**
@@ -103,17 +111,26 @@ class UserController extends Controller
         $user = User::find($id);
         $informasi_siswa = InformasiSiswa::where('user_id', $user->id)->first();
 
-        Storage::disk('public')->delete($informasi_siswa->pas_foto);
+        if(!empty($informasi_siswa)) 
+        {
+            Storage::disk('public')->delete($informasi_siswa->pas_foto);
+    
+            Storage::disk('public')->delete($informasi_siswa->akta_kelahiran);
+    
+            Storage::disk('public')->delete($informasi_siswa->kartu_keluarga);
+    
+            Storage::disk('public')->delete($informasi_siswa->ktp_ortu);
+    
+            $informasi_siswa->delete();
+        }
 
-        Storage::disk('public')->delete($informasi_siswa->akta_kelahiran);
-
-        Storage::disk('public')->delete($informasi_siswa->kartu_keluarga);
-
-        Storage::disk('public')->delete($informasi_siswa->ktp_ortu);
-
-        $informasi_siswa->delete();
         $user->delete();
 
-        return redirect()->back();
+        return redirect()->route('user.index');
+    }
+
+    public function export()
+    {
+        return Excel::download(new UserExport, 'DataUser'.'.xlsx', 'Xlsx');
     }
 }

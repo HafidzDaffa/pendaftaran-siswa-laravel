@@ -16,8 +16,8 @@
         <div class="flex-col w-full h-full bg-white">
             <div class="flex flex-col w-full mt-5 p-5">
                 <div class="flex w-full items-center justify-end my-4 gap-x-5">
-                    <button class="bg-orange-500 hover:bg-orange-600 px-5 py-2 rounded-lg text-white">Export</button>
-                    <button class="bg-blue-500 hover:bg-blue-700 px-5 py-2 rounded-lg text-white">Tambah</button>
+                    <a href="/export-user" class="bg-orange-500 hover:bg-orange-600 px-5 py-2 rounded-lg text-white">Export</a>
+                    <a href="/walimurid-akun/create" class="bg-blue-500 hover:bg-blue-700 px-5 py-2 rounded-lg text-white">Tambah</a>
                 </div>
                 <div class="overflow-x-auto sm:-mx-6 lg:-mx-8 overflow-y-scroll">
                     <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
@@ -58,8 +58,12 @@
                                             {{ $user->no_wa }}
                                         </td>
                                         <td class="whitespace-nowrap px-6 py-4 dark:border-neutral-500 flex justify-around items-center">
-                                            <button class="bg-green-500 hover:bg-green-700 text-white px-5 py-2 rounded-lg">Edit</button>
-                                            <button class="bg-red-500 hover:bg-red-700 text-white px-5 py-2 rounded-lg">Delete</button>
+                                            <a href="{{ route('walimurid-akun.edit', ['id' => $user->id]) }}" class="bg-green-500 hover:bg-green-700 text-white px-5 py-2 rounded-lg">Edit</a>
+                                            <form action="{{ route('walimurid-akun.delete', ['id' => $user->id]) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="bg-red-500 hover:bg-red-700 text-white px-5 py-2 rounded-lg">Delete</button>
+                                            </form>
                                         </td>
                                     </tr>
                                     @endforeach
