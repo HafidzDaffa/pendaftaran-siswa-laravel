@@ -164,8 +164,12 @@ class InformasiSiswaController extends Controller
             'pekerjaan_ortu' => $request->pekerjaan_ortu,
             'penghasilan_ortu' => $request->penghasilan_ortu,
             'kepemilikan_rumah' => $request->kepemilikan_rumah,
-            'status' => $request->status,
         ];
+
+        if($request->status)
+        {
+            $input['status'] = $request->status;
+        }
 
         $informasi_siswa = InformasiSiswa::where('id', '=', $id)->first();
         
@@ -236,7 +240,7 @@ class InformasiSiswaController extends Controller
         $informasi_siswa = $informasi_siswa->update($input);
 
 
-        if(Auth::user()->role = "admin")
+        if(Auth::user()->role == "admin")
         {
             return redirect()->route('informasi-siswa.index');
         }
